@@ -1,0 +1,27 @@
+.elements {
+    width: 68.9%;
+    display: grid;
+    column-gap: 19px;
+    row-gap: 21px;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+
+@media screen and (max-width: 1024px) {
+    .elements {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .elements {
+        width: 88.1%;
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .elements {
+        width: 88.1%;
+        grid-template-columns: 1fr;
+    }
+}

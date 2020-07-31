@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto Russia</title>
+</head>
+<body class="body">
+    <div class="page body__page">
+        <header class="header page__header">
+            <div class="logo"></div>
+            <div class="header__line"></div>
+        </header>
+        <main class="content">
+
+            <section class="profile page__profile">
+                <div class="profile__card">
+                    <img class="profile__avatar" src="./images/Avatar.jpg" alt="аватар">
+                    <div class="profile__profile-info">
+                        <div class="profile__info-header">
+                            <p class="profile__name">Жак-Ив Кусто</p>
+                            <button class="profile__edit-button"></button>
+                        </div>   
+                            <p class="profile__jobs">Исследователь океана</p>
+                    </div>
+                </div>
+                <button class="profile__add-button"></button>
+            </section>
+
+            <section class="elements page__elements">
+                <article class="element">
+                    <img src="./images/karachaevsk.jpg" class="element__image" alt="монастырь в горах">
+                    <div class="element__body">
+                        <h1 class="element__heading">Карачаевск</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img src="./images/elbrus.jpg" class="element__image" alt="приэльбрусье">
+                    <div class="element__body">
+                        <h1 class="element__heading">Гора Эльбрус</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img src="./images/dombaj.jpg" class="element__image" alt="горы">
+                    <div class="element__body">
+                        <h1 class="element__heading">Домбай</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img src="./images/elbrus.jpg" class="element__image" alt="приэльбрусье">
+                    <div class="element__body">
+                        <h1 class="element__heading">Гора Эльбрус</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img src="./images/dombaj.jpg" class="element__image" alt="горы"> 
+                    <div class="element__body">
+                        <h1 class="element__heading">Домбай</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+                <article class="element">
+                    <img src="./images/karachaevsk.jpg" class="element__image" alt="монастырь в горах">
+                    <div class="element__body">
+                        <h1 class="element__heading">Карачаево-Черкесия</h1>
+                        <button class="element__like"></button>
+                    </div>
+                </article>
+            </section>
+
+            <footer class="footer page__footer">
+                <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <section class="popup">
+        <form class="popup__container">
+            <a href="#" class="popup__close-icon"></a>
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <input class="popup__field popup-name" type="text" id="popup-name" value="Жак-Ив Кусто">
+            <input class="popup__field popup-jobs" type="text" id="popup-jobs" value="Исследователь океана">
+            <button class="popup__button">Сохранить</button>
+        </form>
+    </section>
+
+    <script src="./pages/index.js"></script>
+
+</body>
+</html>

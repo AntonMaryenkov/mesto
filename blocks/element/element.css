@@ -1,0 +1,10 @@
+@import url(./__image/element__image.css);
+@import url(./__body/element__body.css);
+@import url(./__heading/element__heading.css);
+@import url(./__like/element__like.css);
+
+.element {
+    min-width: 150px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}

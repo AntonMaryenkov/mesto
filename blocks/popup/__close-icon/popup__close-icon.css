@@ -1,0 +1,18 @@
+.popup__close-icon {
+    background-image: url(../../../images/Close-icon.svg);  
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -56px;
+    right: -38px;
+}
+
+.popup__close-icon:hover {
+    background-image: url(../../../images/Close-icon-focus.svg);
+}
+
+@media screen and (max-width: 580px) {
+    .popup__close-icon{
+        right: -7px;
+    }
+}

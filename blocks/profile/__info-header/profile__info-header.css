@@ -1,0 +1,12 @@
+.profile__info-header {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 6px;
+}
+
+@media screen and (max-width: 425px) {
+    .profile__info-header {
+        margin-bottom: 1px;
+    }
+}

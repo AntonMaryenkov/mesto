@@ -1,0 +1,28 @@
+.popup__field {
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    font-size: 14px;
+    font-family: 'Inter';
+    line-height: 17px;
+    font-style: normal;
+    font-weight: 100;
+    width: 358px;
+    height: 27.2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 27px;
+}
+
+.popup__field:last-of-type {
+    margin-bottom: 52px;
+}
+
+.popup__field:focus {
+    outline-color: rgba(0, 0, 0, .2);
+}
+
+@media screen and (max-width: 580px) {
+    .popup__field {
+        width: 85%;
+    }
+}
