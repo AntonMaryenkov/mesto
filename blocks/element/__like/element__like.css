@@ -9,3 +9,8 @@
     background-color: #ffffff;
     background-size: contain;
 }
+
+.element__like:hover {
+    transform: scale(1.2);
+    transition-duration: 0.05s;
+}

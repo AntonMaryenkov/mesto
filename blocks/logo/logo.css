@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     width: 142px;
     height: 33.4px;
+    padding-bottom: 40.6px;
 }
 
 @media screen and (max-width: 425px) {
@@ -11,5 +12,6 @@
         width: 103.8px;
         height: 24.4px;
         margin-left: 27px;
+        padding-bottom: 31.6px;
     }
 }
