@@ -8,18 +8,18 @@ let profileJobs = profile.querySelector('.profile__jobs');
 let nameInput = popup.querySelector('#popup-name');
 let jobsInput = popup.querySelector('#popup-jobs');
 
-let popupToggle = function (event) {
-    event.preventDefault();
+let popupToggle = function () {
     popup.classList.toggle('popup_visible');
-    nameInput.value = profileName.textContent;
-    jobsInput.value = profileJobs.textContent;
+    if (popup.classList.contains('popup_visible') === true) {
+        nameInput.value = profileName.textContent;
+        jobsInput.value = profileJobs.textContent;
+    }
 }
-
 
 let closePopup = function (event) {
     if (event.target !== event.currentTarget) return false;
-    popupToggle(event);
-}
+    popupToggle();
+} 
 
 editButton.addEventListener('click', popupToggle);
 closeIcon.addEventListener('click', popupToggle);
@@ -30,6 +30,6 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJobs.textContent = jobsInput.value;
-    popupToggle(event);
+    popupToggle();
 }
 formElement.addEventListener('submit', formSubmitHandler);
