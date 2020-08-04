@@ -9,13 +9,13 @@ let nameInput = popup.querySelector('#popup-name');
 let jobsInput = popup.querySelector('#popup-jobs');
 
 let popupToggle = function () {
-    popup.classList.toggle('popup_visible');
-    if (popup.classList.contains('popup_visible') === true) {
+    if (!popup.classList.contains('popup_visible')) {
         nameInput.value = profileName.textContent;
         jobsInput.value = profileJobs.textContent;
     }
+    popup.classList.toggle('popup_visible');
 }
-
+ 
 let closePopup = function (event) {
     if (event.target !== event.currentTarget) return false;
     popupToggle();
