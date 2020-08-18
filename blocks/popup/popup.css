@@ -3,6 +3,9 @@
 @import url(./__heading/popup__heading.css);
 @import url(./__field/popup__field.css);
 @import url(./__button/popup__button.css);
+@import url(./__image-container/popup__image-container.css);
+@import url(./__image/popup__image.css);
+@import url(./__image-span/popup__image-span.css);
 
 .popup {
     position: fixed;
@@ -14,5 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
 }

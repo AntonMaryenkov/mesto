@@ -26,3 +26,9 @@
         width: 85%;
     }
 }
+
+@media screen and (max-height: 430px) {
+    .popup__field:last-of-type {
+        margin-bottom: 29px;
+    }
+}

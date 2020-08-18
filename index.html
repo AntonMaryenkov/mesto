@@ -28,48 +28,16 @@
             </section>
 
             <section class="elements page__elements">
-                <article class="element">
-                    <img src="./images/karachaevsk.jpg" class="element__image" alt="монастырь в горах">
-                    <div class="element__body">
-                        <h2 class="element__heading">Карачаевск</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/elbrus.jpg" class="element__image" alt="приэльбрусье">
-                    <div class="element__body">
-                        <h2 class="element__heading">Гора Эльбрус</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/dombaj.jpg" class="element__image" alt="горы">
-                    <div class="element__body">
-                        <h2 class="element__heading">Домбай</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/elbrus.jpg" class="element__image" alt="приэльбрусье">
-                    <div class="element__body">
-                        <h2 class="element__heading">Гора Эльбрус</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/dombaj.jpg" class="element__image" alt="горы"> 
-                    <div class="element__body">
-                        <h2 class="element__heading">Домбай</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/karachaevsk.jpg" class="element__image" alt="монастырь в горах">
-                    <div class="element__body">
-                        <h2 class="element__heading">Карачаево-Черкесия</h2>
-                        <button class="element__like"></button>
-                    </div>
-                </article>
+                <template id="card-template">
+                    <article class="element">
+                        <img src="" class="element__image" alt="">
+                        <button class="element__delete-icon"></button>
+                        <div class="element__body">
+                            <h2 class="element__heading"></h2>
+                            <button class="element__like"></button>
+                        </div>
+                    </article>
+                </template>
             </section>
 
         </main>
@@ -81,14 +49,32 @@
         
     </div>
 
-    <div class="popup">
-        <form class="popup__container" id="popup-container" name="popap-profile">
+    <div class="popup page__popup-profile">
+        <form class="popup__container" id="popup-container" name="popup-profile">
             <button class="popup__close-icon" type="button"></button>
             <h3 class="popup__heading">Редактировать профиль</h3>
-            <input class="popup__field" type="text" id="popup-name" name="name" value="Жак-Ив Кусто" required>
-            <input class="popup__field" type="text" id="popup-jobs" name="jobs" value="Исследователь океана" required>
+            <input class="popup__field" type="text" name="name-profile" value="Жак-Ив Кусто" required>
+            <input class="popup__field" type="text" name="popup-jobs" value="Исследователь океана" required>
             <button class="popup__button">Сохранить</button>
         </form>
+    </div>
+
+    <div class="popup page__popup-cards">
+        <form class="popup__container popup__container_card" id="popup-container-cards" name="popap-container-cards">
+            <button class="popup__close-icon" type="button"></button>
+            <h3 class="popup__heading">Новое место</h3>
+            <input class="popup__field" type="text" name="name-card" placeholder="Название" required>
+            <input class="popup__field" type="text" name="img-link" placeholder="Ссылка на картинку" required>
+            <button class="popup__button">Создать</button>
+        </form>
+    </div>
+
+    <div class="popup page__popup-image">
+        <div class="popup__image-container">
+            <img class="popup__image" src="" alt="">
+            <button class="popup__close-icon"></button>
+            <span class="popup__image-span"></span>
+        </div>
     </div>
 
     <script src="./scripts/index.js"></script>

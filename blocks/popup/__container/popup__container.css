@@ -13,3 +13,10 @@
         width: 85%;
     }
 }
+
+@media screen and (max-height: 430px) {
+    .popup__container {
+        height: 90%;
+        max-height: 308px;
+    }
+}
