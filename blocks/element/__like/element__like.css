@@ -12,4 +12,5 @@
 
 .element__like:hover {
     background-image: url(../../../images/like-hover.svg);
+    cursor: pointer;
 }

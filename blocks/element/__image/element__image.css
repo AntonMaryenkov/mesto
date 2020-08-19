@@ -1,6 +1,11 @@
 .element__image {
     width: 100%;
     border-radius: 10px 10px 0 0;
-    height: 282px;
+    height: 77.9%;
     object-fit: cover;
+    overflow: hidden;
+}
+
+.element__image:hover {
+    cursor: pointer;
 }

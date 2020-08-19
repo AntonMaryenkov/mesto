@@ -14,6 +14,7 @@
 
 .popup__close-icon:hover {
     background-image: url(../../../images/Close-icon-focus.svg);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 580px) {

@@ -15,4 +15,5 @@
 
 .element__delete-icon:hover {
     background-image: url(../../../images/delete-icon-hover.svg);
+    cursor: pointer;
 }

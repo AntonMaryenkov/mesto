@@ -9,5 +9,8 @@
     background-color: #ffffff;
     border-radius: 10px;
     position: relative;
-    max-height: 382px;
+    height: 382px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

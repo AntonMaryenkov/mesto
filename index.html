@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
     <title>Mesto Russia</title>
 </head>
+
 <body class="body">
     <div class="page body__page">
         <header class="header page__header">
@@ -20,7 +22,7 @@
                         <div class="profile__info-header">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
                             <button class="profile__edit-button"></button>
-                        </div>   
+                        </div>
                         <p class="profile__jobs">Исследователь океана</p>
                     </div>
                 </div>
@@ -46,11 +48,11 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
 
-        
+
     </div>
 
     <div class="popup page__popup-profile">
-        <form class="popup__container" id="popup-container" name="popup-profile">
+        <form class="popup__container popup__form_profile">
             <button class="popup__close-icon" type="button"></button>
             <h3 class="popup__heading">Редактировать профиль</h3>
             <input class="popup__field" type="text" name="name-profile" value="Жак-Ив Кусто" required>
@@ -60,7 +62,7 @@
     </div>
 
     <div class="popup page__popup-cards">
-        <form class="popup__container popup__container_card" id="popup-container-cards" name="popap-container-cards">
+        <form class="popup__container popup__form_card">
             <button class="popup__close-icon" type="button"></button>
             <h3 class="popup__heading">Новое место</h3>
             <input class="popup__field" type="text" name="name-card" placeholder="Название" required>
@@ -80,4 +82,5 @@
     <script src="./scripts/index.js"></script>
 
 </body>
+
 </html>
