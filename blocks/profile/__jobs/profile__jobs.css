@@ -12,6 +12,12 @@
     max-width: 295px;
 }
 
+@media screen and (max-width: 580px) {
+    .profile__jobs {
+        max-width: 215px;
+    }
+}
+
 @media screen and (max-width: 425px) {
     .profile__jobs {
         font-size: 14px;

@@ -1,0 +1,21 @@
+.popup__error {
+    color:#ff0000;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 15px;
+    width: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 31px;
+    z-index: 1;
+}
+
+@media screen and (max-width: 330px) {
+    .popup__error {
+        font-size: 10px;
+        line-height: 12px;
+    }
+}

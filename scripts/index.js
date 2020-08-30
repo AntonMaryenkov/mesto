@@ -8,12 +8,50 @@ const profileJobs = profile.querySelector('.profile__jobs');
 const formProfile = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfile.elements['name-profile'];
 const jobsInput = formProfile.elements['popup-jobs'];
+const popup = document.querySelector('.popup');
 
-function openPopup(popupElement) {
-    popupElement.classList.add('popup_visible');
+function closeEsc(e) {  // функция закрытия попапа по нажатию на Esc
+    const popapActive = document.getElementsByClassName('popup_visible');
+    if (e.keyCode == 27) {
+        popapActive[0].classList.remove('popup_visible');
+        document.removeEventListener('keyup', closeEsc); // удаляем слушатель событий, закрывающий модальное окно по нажатию на Esc
+    }
 }
 
-function closePopup(popupElement) {
+function openFormIsValid(popup) { // функция убирает модификаторы об ошибке при валидности полей формы 
+    const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+    inputList.forEach(function (input) {
+        if (input.validity.valid) {
+            input.classList.remove('popup__input_type_error');
+            const erorrSpan = popup.querySelector(`#${input.id}-error`);
+            erorrSpan.classList.remove('popup__error_visible');
+            popup.querySelector('.popup__button').classList.remove('popup__button_disabled');
+        }
+    });
+}
+
+function removeErorr(popup) { // функция сброса ошибок валидации  
+    const inputList = Array.from(popup.querySelectorAll('.popup__input'));
+    inputList.forEach(function (input) {
+        input.classList.remove('popup__input_type_error');
+    });
+    const erorrSpanList = Array.from(popup.querySelectorAll('.popup__error'));
+    erorrSpanList.forEach(function (erorrSpan) {
+        erorrSpan.classList.remove('popup__error_visible');
+    });
+}
+
+function openPopup(popupElement) {  // фунция открытия попапа
+    popupElement.classList.add('popup_visible');
+    document.addEventListener('keyup', closeEsc); // добавляем слушатель событий, закрывающий модальное окно по нажатию на Esc
+}
+
+function closePopup(popupElement) {  // функция закрытия попапа
+    popupElement.classList.remove('popup_visible');
+}
+
+function closePopupClickOverlay(popupElement) {  // функция закрытия формы при клике на оверлей
+    if (event.target !== event.currentTarget) return false;
     popupElement.classList.remove('popup_visible');
 }
 
@@ -21,13 +59,13 @@ editButton.addEventListener('click', function () {  // слушатель на �
     nameInput.value = profileName.textContent;
     jobsInput.value = profileJobs.textContent;
     openPopup(popupProfile);
+    openFormIsValid(popupProfile);
 });
 closeIcon.addEventListener('click', function () {   // слушатель на клик на кнопку "закрыть попап"
     closePopup(popupProfile);
 });
-popupProfile.addEventListener('click', function () {   // слушатель на клик за пределы попап формы
-    if (event.target !== event.currentTarget) return false;
-    closePopup(popupProfile);
+popupProfile.addEventListener('click', function () {  // слушатель на клик за пределы попап формы
+    closePopupClickOverlay(popupProfile);
 });
 
 function formSubmitHandler(evt) {  // функция слушателя сабмита формы профиля
@@ -48,14 +86,15 @@ const saveButtonPopupCard = popupCards.querySelector('.popup__button') // пол
 openedPopupCards.addEventListener('click', function () {  // слушатель на клик на кнопку открыть
     formCard.reset();
     openPopup(popupCards);
+    removeErorr(popupCards);
 });
+
 closeIconPopupCards.addEventListener('click', function () {  // закрыть popup для добавления карточек
     closePopup(popupCards);
 });
 
 popupCards.addEventListener('click', function () {  // событие при клике за пределы popup'a
-    if (event.target !== event.currentTarget) return false;
-    closePopup(popupCards);
+    closePopupClickOverlay(popupCards);
 });
 
 const elementsSection = document.querySelector('.elements'); // получить секцию elements
@@ -169,7 +208,6 @@ buttonClosePopupImage.addEventListener('click', function () {  // закрыти
     closePopup(popupImage);
 });
 
-popupImage.addEventListener('click', function (event) {  // слушатель при клике за пределы popup-фотографии
-    if (event.target !== event.currentTarget) return false;
-    closePopup(popupImage);
+popupImage.addEventListener('click', function () {  // слушатель при клике за пределы popup-фотографии
+    closePopupClickOverlay(popupImage);
 });
