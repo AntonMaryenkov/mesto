@@ -9,12 +9,12 @@ const formProfile = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfile.elements['name-profile'];
 const jobsInput = formProfile.elements['popup-jobs'];
 const popup = document.querySelector('.popup');
+const cardTemplate = document.querySelector('#card-template').content;
 
 function closeEsc(e) {  // функция закрытия попапа по нажатию на Esc
-    const popapActive = document.getElementsByClassName('popup_visible');
+    const popapActive = document.querySelector('.popup_visible');
     if (e.keyCode == 27) {
-        popapActive[0].classList.remove('popup_visible');
-        document.removeEventListener('keyup', closeEsc); // удаляем слушатель событий, закрывающий модальное окно по нажатию на Esc
+        closePopup(popapActive);
     }
 }
 
@@ -48,11 +48,12 @@ function openPopup(popupElement) {  // фунция открытия попап�
 
 function closePopup(popupElement) {  // функция закрытия попапа
     popupElement.classList.remove('popup_visible');
+    document.removeEventListener('keyup', closeEsc); // удаляем слушатель событий, закрывающий модальное окно по нажатию на Esc
 }
 
 function closePopupClickOverlay(popupElement) {  // функция закрытия формы при клике на оверлей
     if (event.target !== event.currentTarget) return false;
-    popupElement.classList.remove('popup_visible');
+    closePopup(popupElement);
 }
 
 editButton.addEventListener('click', function () {  // слушатель на клик на кнопку "редактировать профиль"
@@ -102,7 +103,6 @@ const elementsSection = document.querySelector('.elements'); // получить
 // функция для загрузки названия и ссылки на фото для новой карточки
 
 function createCard(nameImage, linkImage) {
-    const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
 
     cardElement.querySelector('.element__heading').textContent = nameImage;
