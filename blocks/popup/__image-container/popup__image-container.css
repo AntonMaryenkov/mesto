@@ -1,5 +1,4 @@
 .popup__image-container {
-    height: 80%;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -1,15 +1,73 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.page__popup-profile');
 const closeIcon = popupProfile.querySelector('.popup__close-icon');
-const savePopupButton = popupProfile.querySelector('.popup__button');
 const profileName = profile.querySelector('.profile__name');
 const profileJobs = profile.querySelector('.profile__jobs');
 const formProfile = popupProfile.querySelector('.popup__form_profile');
 const nameInput = formProfile.elements['name-profile'];
 const jobsInput = formProfile.elements['popup-jobs'];
-const popup = document.querySelector('.popup');
-const cardTemplate = document.querySelector('#card-template').content;
+const popupCards = document.querySelector('.page__popup-cards');  // получить popup для добавления карточек
+const openedPopupCards = profile.querySelector('.profile__add-button');  // получить кнопку  открытия popup'a для добавления карточек
+const closeIconPopupCards = popupCards.querySelector('.popup__close-icon');  // получить кнопку внутри popup'a для добавления карточек - "закрыть"
+const formCard = document.querySelector('.popup__form_card'); // получить форму для загрузки карточек
+const popupImage = document.querySelector('.page__popup-image');  // получить popup с увеличенной фотографией
+const popupImageOpened = popupImage.querySelector('.popup__image');  // получить popup с большой фотографией
+const spanPopupImage = popupImage.querySelector('.popup__image-span');  // получить подпись к большой фотографии
+// объект настроек с классами формы
+const formConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+};
+
+const cardFormValidator = new FormValidator(formConfig, formCard);
+const profilFormValidator =new FormValidator(formConfig, formProfile);
+cardFormValidator.enableValidation();
+profilFormValidator.enableValidation();
+
+// массив с карточками
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+// Загружаем карточки из массива 
+initialCards.forEach((item) => {
+    // Создадим экземпляр карточки
+    const card = new Card(item.name, item.link);
+    // Создаём карточку и возвращаем наружу
+    const cardElement = card.generateCard();
+    // Добавляем в DOM
+    document.querySelector('.elements').prepend(cardElement);
+});
 
 function closeEsc(e) {  // функция закрытия попапа по нажатию на Esc
     const popapActive = document.querySelector('.popup_visible');
@@ -77,11 +135,6 @@ function formSubmitHandler(evt) {  // функция слушателя сабм
 }
 formProfile.addEventListener('submit', formSubmitHandler); // слушатель сабмита формы профиля
 
-const popupCards = document.querySelector('.page__popup-cards');  // получить popup для добавления карточек
-
-const openedPopupCards = profile.querySelector('.profile__add-button');  // получить кнопку  открытия popup'a для добавления карточек
-const closeIconPopupCards = popupCards.querySelector('.popup__close-icon');  // получить кнопку внутри popup'a для добавления карточек - "закрыть"
-const formCard = document.querySelector('.popup__form_card'); // получить форму для загрузки карточек
 const saveButtonPopupCard = popupCards.querySelector('.popup__button') // получить кнопку "Создать" в popup'e для добавления карточек
 
 openedPopupCards.addEventListener('click', function () {  // слушатель на клик на кнопку открыть
@@ -101,32 +154,13 @@ popupCards.addEventListener('click', function () {  // событие при к�
 const elementsSection = document.querySelector('.elements'); // получить секцию elements
 
 // функция для загрузки названия и ссылки на фото для новой карточки
-
-function createCard(nameImage, linkImage) {
-    const cardElement = cardTemplate.cloneNode(true);
-
-    cardElement.querySelector('.element__heading').textContent = nameImage;
-    cardElement.querySelector('.element__image').src = linkImage;
-    cardElement.querySelector('.element__image').alt = nameImage;
-
-    const buttonLikeCard = cardElement.querySelector('.element__like'); // получить кнопку лайк
-
-    buttonLikeCard.addEventListener('click', function (evt) {  // слушатель клика кнопки лайк
-        evt.target.classList.toggle('element__like_active');
-    });
-
-    const buttonDeleteCard = cardElement.querySelector('.element__delete-icon'); // получить иконку "удалить карточку"
-
-    buttonDeleteCard.addEventListener('click', function () { // слушатель клика иконки "удалить карточку"
-        const card = buttonDeleteCard.closest('.element');
-        card.remove();
-    });
-
-    const imageCard = cardElement.querySelector('.element__image'); // поучить фотографию из карточки
-    imageCard.addEventListener('click', function () {  // слушатель клика при нажатии на фото из карточки
-        openPopup(popupImage);
-        receivingData(event);
-    });
+function createCard(nameImage, linkImage) { 
+     // Создадим экземпляр карточки
+     const card = new Card(nameImage, linkImage);
+     // Создаём карточку и возвращаем наружу
+     const cardElement = card.generateCard();
+     // Добавляем в DOM
+     document.querySelector('.elements').prepend(cardElement);
 
     return cardElement;
 }
@@ -136,7 +170,6 @@ function addCard(nameImage, linkImage) {
 }
 
 // слушатель на форму по submit, при клике на "Создать" загружаем значения из полей формы
-
 formCard.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
@@ -151,49 +184,7 @@ formCard.addEventListener('submit', function (evt) {
     closePopup(popupCards);
 });
 
-// массив с карточками
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-function addCardList(cardList) {  // функция по добавлению карточек из массива
-    cardList.forEach(function (item) {
-        addCard(item['name'], item['link']);
-    });
-}
-
-addCardList(initialCards); // Вызов функции
-
-const popupImage = document.querySelector('.page__popup-image');  // получить popup с увеличенной фотографией
-const popupImageOpened = popupImage.querySelector('.popup__image');  // получить popup с большой фотографией
-const spanPopupImage = popupImage.querySelector('.popup__image-span');  // получить подпись к большой фотографии
-
 // функцией получаем src и название из карточки
-
 function receivingData(event) {
     const imageCard = event.target;   // фото внутри карточки
     const element = event.target.closest('.element');  // поднимаемся выше до родителя
@@ -210,4 +201,6 @@ buttonClosePopupImage.addEventListener('click', function () {  // закрыти
 
 popupImage.addEventListener('click', function () {  // слушатель при клике за пределы popup-фотографии
     closePopupClickOverlay(popupImage);
-});
+})
+
+export { openPopup, receivingData, popupImage, initialCards };
