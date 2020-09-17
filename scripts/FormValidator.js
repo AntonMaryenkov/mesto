@@ -14,7 +14,7 @@ class FormValidator {
         // добавляем класс(делаем видимым) сообщение об ошибке
         this._errorElement.classList.add(this._formConfig.errorClass);
     }
-    
+
     // Метод, который удаляет класс с ошибкой
     _hideInputError(inputElement) {
         this._errorElement = this._form.querySelector(`#${inputElement.id}-error`);
@@ -73,13 +73,13 @@ class FormValidator {
     }
 
     enableValidation() {
-            this._form.addEventListener('submit', function (evt) {
-                // У формы отменим стандартное поведение
-                evt.preventDefault();
-                // Для формы вызовем функцию setEventListeners, передав ей элемент формы
-            });
-            this._setEventListener();           
-        };
-}    
+        this._form.addEventListener('submit', function (evt) {
+            // У формы отменим стандартное поведение
+            evt.preventDefault();
+            // Для формы вызовем функцию setEventListeners, передав ей элемент формы
+        });
+        this._setEventListener();
+    };
+}
 
 export { FormValidator };
