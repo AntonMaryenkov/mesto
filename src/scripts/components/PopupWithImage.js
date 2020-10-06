@@ -3,15 +3,13 @@ import { Popup } from './Popup.js';
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._popupImage = this._popupSelector.querySelector('.popup__image');
+    this._popupImageText = this._popupSelector.querySelector('.popup__image-span');
   }
-  open(event) {
-    const imageCard = event.target;   // фото внутри карточки
-    const element = event.target.closest('.element');  // поднимаемся выше до родителя
-    const titleImage = element.querySelector('.element__heading') // выбираем ребенка - название фотографии
-    this._popupSelector.querySelector('.popup__image').src = imageCard.src;  // подставляем значения: путь к фотографии
-    this._popupSelector.querySelector('.popup__image').alt = imageCard.alt;
-    this._popupSelector.querySelector('.popup__image-span').textContent = titleImage.textContent;
-    // и её название
+  open({ name, link }) {
+    this._popupImage.src = link;
+    this._popupImage.alt = name;
+    this._popupImageText.textContent = name;
     super.open();
   }
 }

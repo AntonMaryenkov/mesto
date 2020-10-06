@@ -20,7 +20,8 @@ class Popup {
   }
 
   _handleEscClose(e) {
-    if (e.keyCode == 27) {
+    const keyCodeESC = 27;
+    if (e.keyCode == keyCodeESC) {
       this.close();
     }
   }

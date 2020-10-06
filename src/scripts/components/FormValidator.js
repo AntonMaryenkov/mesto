@@ -56,26 +56,27 @@ class FormValidator {
   }
 
   openFormIsValid(popup) { // функция убирает модификаторы об ошибке при валидности полей формы
-    const inputList = Array.from(popup.querySelectorAll('.popup__input'));
-    inputList.forEach(function (input) {
+    const inputList = Array.from(popup.querySelectorAll(this._formConfig.inputSelector));
+    inputList.forEach((input) => {
       if (input.validity.valid) {
-        input.classList.remove('popup__input_type_error');
+        input.classList.remove(this._formConfig.inputErrorClass);
+
         const erorrSpan = popup.querySelector(`#${input.id}-error`);
-        erorrSpan.classList.remove('popup__error_visible');
-        popup.querySelector('.popup__button').classList.remove('popup__button_disabled');
+        erorrSpan.classList.remove(this._formConfig.errorClass);
+        popup.querySelector(this._formConfig.submitButtonSelector).classList.remove(this._formConfig.inactiveButtonClass);
       }
     });
   }
 
   removeErorr(popup) { // функция сброса ошибок валидации
-    const inputList = Array.from(popup.querySelectorAll('.popup__input'));
-    inputList.forEach(function (input) {
-      input.classList.remove('popup__input_type_error');
+    const inputList = Array.from(popup.querySelectorAll(this._formConfig.inputSelector));
+    inputList.forEach((input) => {
+      input.classList.remove(this._formConfig.inputErrorClass);
     });
-    popup.querySelector('.popup__button').classList.add('popup__button_disabled');
+    popup.querySelector(this._formConfig.submitButtonSelector).classList.add(this._formConfig.inactiveButtonClass);
     const erorrSpanList = Array.from(popup.querySelectorAll('.popup__error'));
-    erorrSpanList.forEach(function (erorrSpan) {
-      erorrSpan.classList.remove('popup__error_visible');
+    erorrSpanList.forEach((erorrSpan) => {
+      erorrSpan.classList.remove(this._formConfig.errorClass);
     });
   }
 

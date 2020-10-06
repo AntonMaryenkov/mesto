@@ -39,10 +39,12 @@ class Card {
   // Метод удаления карточки
   _deleteCard() {
     this._element.remove();
+    this._element = null;
   }
   // Метод отккрыть попап с большой картинкой
-  _openPopup(event) {
-    this._handleCardClick(event);
+  _openPopup() {
+    this._handleCardClick(this._data);
+    //this._handleCardClick(event);
   }
   // Метод со слушателями на клик на лайк, иконку удалить и клик на картинку
   _setEventListeners() {
@@ -52,8 +54,8 @@ class Card {
     this._buttonDelete.addEventListener('click', () => {
       this._deleteCard();
     });
-    this._cardImage.addEventListener('click', (event) => {
-      this._openPopup(event);
+    this._cardImage.addEventListener('click', () => {
+      this._openPopup();
     });
   }
 }

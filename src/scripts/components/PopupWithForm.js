@@ -5,6 +5,7 @@ class PopupWithForm extends Popup {
     super(popupSelector);
     this._callback = callback;
     this._submitForm = this._submitForm.bind(this);
+    this._popupForm = this._popupSelector.querySelector('.popup__form');
   }
 
   _getInputValues() {
@@ -12,7 +13,6 @@ class PopupWithForm extends Popup {
     this._inputList = this._popupSelector.querySelectorAll('.popup__input');
     // создаём пустой объект
     this._formValues = {};
-
     // добавляем в этот объект значения всех полей
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
@@ -37,9 +37,8 @@ class PopupWithForm extends Popup {
   close() {
     this._popupSelector.removeEventListener('submit', this._submitForm);
     super.close();
-    //this._popupSelector.reset();
-    document.getElementById('name-card-input').value = "";
-    document.getElementById('url-input').value = "";
+    this._popupForm.reset();
+
   }
 
 }
