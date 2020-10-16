@@ -1,0 +1,12 @@
+.profile__avatar-block {
+  position: relative;
+}
+
+.profile__avatar-block:hover .profile__avatar-icon {
+  display: block;
+}
+
+.profile__avatar-block:hover .profile__avatar {
+  background-color: #000000;
+  opacity: 20%;
+}

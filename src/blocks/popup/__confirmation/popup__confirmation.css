@@ -1,0 +1,23 @@
+.popup__confirmation {
+  background-color: #ffffff;
+    position: fixed;
+    width: 430px;
+    height: 181px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+@media screen and (max-width: 580px) {
+  .popup__confirmation {
+      width: 85%;
+  }
+}
+
+@media screen and (max-height: 430px) {
+  .popup__confirmation {
+      height: 90%;
+      max-height: 308px;
+  }
+}

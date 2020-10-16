@@ -4,3 +4,9 @@
     border-radius: 60px;
     background-color: #c4c4c4;
 }
+
+.profile__avatar:hover {
+  background-color: #000000;
+  opacity: 20%;
+  cursor: pointer;
+}

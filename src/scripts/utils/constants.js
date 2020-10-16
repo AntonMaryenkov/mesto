@@ -12,6 +12,12 @@ const cardPopup = document.querySelector('.page__popup-cards');  // получи
 const cardForm = document.querySelector('.popup__form_card'); // получить форму для загрузки карточек
 const cardPopupOpenButton = profile.querySelector('.profile__add-button');  // получить кнопку  открытия popup'a для добавления карточек
 const imagePopup = document.querySelector('.page__popup-image');  // получить popup с увеличенной фотографией
+const avatarPopup = document.querySelector('.page__popup-avatar'); // получить popup аватара
+const avatarForm = avatarPopup.querySelector('.popup__form_avatar'); // получить форму редактирования аватара
+const avatarImg = profile.querySelector('.profile__avatar'); // получить img аватара
+const avatarBlock = profile.querySelector('.profile__avatar-block'); // получить обертку лайка и счетчика лайков
+const avatarInput = avatarForm.elements['url-avatar']; // получить поле формы аватара
+const popupConfirmation = document.querySelector('.page__popup-confirmation'); // получить счетчик лайков
 // объект настроек с классами формы
 const formConfig = {
   formSelector: '.popup__form',
@@ -21,32 +27,5 @@ const formConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
-// массив с карточками
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-export { formConfig, initialCards, profilePopup, cardPopup, imagePopup, editButton, cardPopupOpenButton, profile, profileName, profileJobs, profileForm, nameInput, jobsInput, cardForm, elementsSection, cardTemplate };
+export { formConfig, profilePopup, cardPopup, imagePopup, editButton, cardPopupOpenButton, profile, profileName, profileJobs, profileForm, nameInput, jobsInput, cardForm, elementsSection, cardTemplate, avatarPopup, avatarForm, avatarImg, avatarInput, popupConfirmation, avatarBlock };

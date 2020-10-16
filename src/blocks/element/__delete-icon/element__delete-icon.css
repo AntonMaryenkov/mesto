@@ -11,6 +11,7 @@
     position: absolute;
     top: 18px;
     right: 13px;
+    display: none;
 }
 
 .element__delete-icon:hover {

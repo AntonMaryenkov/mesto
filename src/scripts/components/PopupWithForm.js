@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._callback = callback;
     this._submitForm = this._submitForm.bind(this);
     this._popupForm = this._popupSelector.querySelector('.popup__form');
+    this.textLoading = 'Загрузка...';
   }
 
   _getInputValues() {
@@ -38,7 +39,6 @@ class PopupWithForm extends Popup {
     this._popupSelector.removeEventListener('submit', this._submitForm);
     super.close();
     this._popupForm.reset();
-
   }
 
 }

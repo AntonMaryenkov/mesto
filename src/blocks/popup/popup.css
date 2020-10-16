@@ -8,6 +8,8 @@
 @import url(./__image-span/popup__image-span.css);
 @import url(./__error/popup__error.css);
 @import url(./__field/popup__field.css);
+@import url(./__form/_avatar/popup__form_avatar.css);
+@import url(./__confirmation/popup__confirmation.css);
 
 .popup {
     position: fixed;

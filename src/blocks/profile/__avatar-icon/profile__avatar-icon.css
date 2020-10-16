@@ -1,0 +1,13 @@
+.profile__avatar-icon {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: none;
+  background-repeat: no-repeat;
+}
+
+.profile__avatar-icon:hover {
+  cursor: pointer;
+}
