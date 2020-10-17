@@ -12,6 +12,10 @@ class UserInfo {
 
     return this._userValues;
   }
+ 
+  setAvatarLink(link, avatarImg) {
+    avatarImg.src = link;
+  }
 
   setUserInfo(name, info) {
     this._nameSelectror.textContent = name;

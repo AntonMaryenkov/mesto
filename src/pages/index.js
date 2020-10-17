@@ -7,7 +7,6 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
 import { UserInfo } from '../scripts/components/UserInfo';
 import { Api } from '../scripts/components/Api.js';
-import { PopupEditAvatar } from '../scripts/components/PopupEditAvatar.js';
 import { PopupWithSubmit } from '../scripts/components/PopupWithSubmit.js';
 
 // функция отображения текста UX при сабмите различных форм
@@ -26,33 +25,6 @@ const info = new UserInfo(profileName, profileJobs);
 // экземпляр класса popup'а с большой фотография
 const popupImage = new PopupWithImage(imagePopup);
 
-// экземпляр класса аватар
-const editAvatar = new PopupEditAvatar({
-  popupSelector: avatarPopup,
-  callback: function (data) {
-    avatarImg.src = data.avatar;
-    const avatarLink = avatarImg.src;
-    // UX
-    renderLoading(true, avatarPopup, this.textLoading);
-    api.addAvatar(avatarLink)
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        renderLoading(false, avatarPopup, this.textLoading);
-      });
-  }
-});
-
-// слушатель на клик по аватарке
-avatarBlock.addEventListener('click', function () {
-  editAvatar.open();
-  avatarInput.value = avatarImg.src;
-  editAvatar.setEventListeners();
-
-  avatarFormValidator.openFormIsValid(avatarPopup);
-});
-
 // экземпляр класса API
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-16',
@@ -66,9 +38,8 @@ const api = new Api({
 const userInfo = api.getUserInfo();
 userInfo
   .then((res) => {
-    avatarImg.src = res.avatar;
-    profileName.textContent = res.name;
-    profileJobs.textContent = res.about;
+    info.setAvatarLink(res.avatar, avatarImg);
+    info.setUserInfo(res.name, res.about)
 
     return res;
   })
@@ -181,6 +152,38 @@ userInfo
         console.log(err);
       });
 
+    // экземпляр класса аватар
+    const editAvatar = new PopupWithForm({
+      popupSelector: avatarPopup,
+      callback: function (data) {
+        // UX
+        renderLoading(true, avatarPopup, this.textLoading);
+        api.addAvatar(data.avatar)
+          .then((res) => {
+            // меняем информацию о пользователе на странице
+            info.setAvatarLink(res.avatar, avatarImg);
+          })
+          .then(() => {
+            editAvatar.close();
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            renderLoading(false, avatarPopup, this.textLoading);
+          });
+      }
+    });
+
+    // слушатель на клик по аватарке
+    avatarBlock.addEventListener('click', function () {
+      editAvatar.open();
+      avatarInput.value = avatarImg.src;
+      editAvatar.setEventListeners();
+
+      avatarFormValidator.openFormIsValid(avatarPopup);
+    });
+
     // слушатель на клик на кнопку "редактировать профиль"
     editButton.addEventListener('click', function () {
       const userData = info.getUserInfo();
@@ -197,6 +200,9 @@ userInfo
             .then((data) => {
               // меняем информацию о пользователе на странице
               info.setUserInfo(data.name, data.about);
+            })
+            .then(() => {
+              popupForm.close();
             })
             .catch((err) => {
               console.log(err);
@@ -216,7 +222,6 @@ userInfo
       const popupForm = new PopupWithForm({
         popupSelector: cardPopup,
         callback: function (data) {
-          console.log(data)
           const cardList = new Section({
             items: data,
             renderer: function (data) {
@@ -234,6 +239,9 @@ userInfo
               // добавляем карточку на страницу
               cardList.addItem(cardElement);
             })
+            .then(() => {
+              popupForm.close();
+            })
             .catch((err) => {
               console.log(err);
             })
@@ -247,7 +255,6 @@ userInfo
 
       cardFormValidator.removeErorr(cardPopup);
     });
-
   })
   .catch((err) => {
     console.log(err);
